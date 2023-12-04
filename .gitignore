@@ -1,0 +1,5 @@
+# Ignore folders starting with .terraform
+.terraform*/
+
+# Ignore files starting with .terraform
+.terraform*

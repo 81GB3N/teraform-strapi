@@ -1,0 +1,210 @@
+{
+  "version": 4,
+  "terraform_version": "1.2.6",
+  "serial": 13,
+  "lineage": "91dbabbc-2bb7-b7ce-57fd-54c3059f8744",
+  "outputs": {
+    "instance_ip": {
+      "value": "10.0.0.89",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "mode": "data",
+      "type": "cloudinit_config",
+      "name": "ubuntu_init",
+      "provider": "provider[\"registry.terraform.io/hashicorp/cloudinit\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "base64_encode": true,
+            "boundary": "MIMEBOUNDARY",
+            "gzip": true,
+            "id": "1326779412",
+            "part": [
+              {
+                "content": "#!/bin/bash\n\napt-get update\napt-get -y upgrade\napt-get -y install nginx\n\nsystemctl enable nginx\nsystemctl start nginx\n\nhostname=$(hostname)\n\ncat \u003c\u003cEOF \u003e /var/www/html/index.nginx-debian.html \n\u003c!DOCTYPE html\u003e\n\u003chtml\u003e\n\u003chead\u003e\n\u003ctitle\u003eWelcome to nginx!\u003c/title\u003e\n\u003cstyle\u003e\n    body {\n        width: 35em;\n        margin: 0 auto;\n        font-family: Tahoma, Verdana, Arial, sans-serif;\n    }\n\u003c/style\u003e\n\u003c/head\u003e\n\u003cbody\u003e\n\u003ch1\u003eWelcome to nginx!\u003c/h1\u003e\n\u003cp\u003eIf you see this page, the nginx web server is successfully installed and\nworking. Further configuration is required.\u003c/p\u003e\n\n\u003cp\u003eFor online documentation and support please refer to\n\u003ca href=\"http://nginx.org/\"\u003enginx.org\u003c/a\u003e.\u003cbr/\u003e\nCommercial support is available at\n\u003ca href=\"http://nginx.com/\"\u003enginx.com\u003c/a\u003e.\u003c/p\u003e\n\n\u003cp\u003e\u003cem\u003eThank you for using nginx.\u003c/em\u003e\u003c/p\u003e\n\u003cp\u003e\u003cem\u003eHello from: $hostname\u003c/em\u003e\u003c/p\u003e\n\u003c/body\u003e\n\u003c/html\u003e\nEOF\n\n# Disable firewall \n/usr/sbin/netfilter-persistent stop\n/usr/sbin/netfilter-persistent flush\n\nsystemctl stop netfilter-persistent.service\nsystemctl disable netfilter-persistent.service",
+                "content_type": "text/x-shellscript",
+                "filename": null,
+                "merge_type": null
+              }
+            ],
+            "rendered": "H4sIAAAAAAAA/4RUTY/kRAy9l9T/wTO7B5AmqR0hhNSbibTM9Ig9DINQs2iPTspJrK2P4HKmu4X47yj9tQ0s0Jeqev1sP9l+uU9RKWqx3o20hDB55RFFbeAtubfQpCk6lN3d9dP7p9X3z7/8+PDu54/XZn4VH0gyp7iE2/LNwixMUVySFuacWzDmjqRYxTY5jv0SvmtYLwj74kpbtdsiD+R9boVHXZgnDvSPOq+ubMPRNpgHY3DUoieFaXSodH4WO5jGXtD9BeKYFb2H2HPcGpN3WSm06oEiNp6O+Gc4K4qe2EPKGjHQ3euvTtevjWlRoapWz49Qg31BsZvNxg4avOXoaFvugwtHDWMsZxxMdfXwfL/++NMK5ndtqtNB6GpTKaun+lfybQoEmg71ryp7+MNUWXfzCQDQJLeD3/fX+bdhp8MSvvmWwtszGFB6jkt4Azhp+ox3KWrRYWC/W8IahxTwBj6QOIx4A++E0d9AxpiLTMLdIfAPU9lj/coeBc8iZvm3XxI93NamGuv3HezSBJkIdOAMI/Z0Azocew4baiCTvJAAZ8hT21LO3eT9eWjkAKMzmySfOPYlPE6iAwm0KXbcT4LKKc7BQr9NLOTKyo61mYs/JoEUPUcCl9opUNQDG6ODPI1jEoXRE2YCoY4ENJkKYRDq7q4H1XFp7V5nmaS31/X5Xlmsy6oRW5v7FAJJy+jPKTkDviD7/W6h/kvKNoVzyjaFQ8qT9IpCvR4wftq3r0sCU+bYH7pWVpZCveceqT+Q9wk6SWEJr09besGyx1nZw8qtnh+NeQUPnPcSOxbazP4wdspi8+yySNqxV5JinG2YZ8NC1jT+H6fz0+zPSzOlEb5ELefBc0sXXHdU9F/0v39wimJh/gwAAP//lRRNN88EAAA="
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "oci_core_instance",
+      "name": "strapi_instance",
+      "provider": "provider[\"registry.terraform.io/oracle/oci\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "agent_config": [
+              {
+                "are_all_plugins_disabled": false,
+                "is_management_disabled": false,
+                "is_monitoring_disabled": false,
+                "plugins_config": [
+                  {
+                    "desired_state": "DISABLED",
+                    "name": "Management Agent"
+                  },
+                  {
+                    "desired_state": "ENABLED",
+                    "name": "Custom Logs Monitoring"
+                  },
+                  {
+                    "desired_state": "DISABLED",
+                    "name": "Compute RDMA GPU Monitoring"
+                  },
+                  {
+                    "desired_state": "ENABLED",
+                    "name": "Compute Instance Monitoring"
+                  },
+                  {
+                    "desired_state": "DISABLED",
+                    "name": "Compute HPC RDMA Auto-Configuration"
+                  },
+                  {
+                    "desired_state": "DISABLED",
+                    "name": "Compute HPC RDMA Authentication"
+                  },
+                  {
+                    "desired_state": "DISABLED",
+                    "name": "Bastion"
+                  }
+                ]
+              }
+            ],
+            "async": null,
+            "availability_config": [
+              {
+                "is_live_migration_preferred": false,
+                "recovery_action": "RESTORE_INSTANCE"
+              }
+            ],
+            "availability_domain": "egEE:EU-FRANKFURT-1-AD-1",
+            "boot_volume_id": "ocid1.bootvolume.oc1.eu-frankfurt-1.abtheljtp4hnl6mykgvhzel4qjgq2rf75ezfr5hog75pdvfonmblksynssua",
+            "capacity_reservation_id": null,
+            "compartment_id": "ocid1.tenancy.oc1..aaaaaaaa2grbtpklpmfgeuihdqu44odpg7gc3svtgoklzbojeb4fct3yoamq",
+            "compute_cluster_id": null,
+            "create_vnic_details": [
+              {
+                "assign_ipv6ip": false,
+                "assign_private_dns_record": false,
+                "assign_public_ip": "true",
+                "defined_tags": {
+                  "Oracle-Tags.CreatedBy": "default/jonas.balukonis@gmail.com",
+                  "Oracle-Tags.CreatedOn": "2023-11-25T17:05:02.701Z"
+                },
+                "display_name": "network-cms",
+                "freeform_tags": {},
+                "hostname_label": "network-cms",
+                "ipv6address_ipv6subnet_cidr_pair_details": [],
+                "nsg_ids": [],
+                "private_ip": "10.0.0.89",
+                "skip_source_dest_check": false,
+                "subnet_id": "ocid1.subnet.oc1.eu-frankfurt-1.aaaaaaaamraivkdawacfycvjic57q2qspc7btt2aabfe7tlyq5qdgojlldta",
+                "vlan_id": ""
+              }
+            ],
+            "dedicated_vm_host_id": null,
+            "defined_tags": {
+              "Oracle-Tags.CreatedBy": "default/jonas.balukonis@gmail.com",
+              "Oracle-Tags.CreatedOn": "2023-11-25T17:05:02.566Z"
+            },
+            "display_name": "strapi",
+            "extended_metadata": {},
+            "fault_domain": "FAULT-DOMAIN-1",
+            "freeform_tags": {
+              "environment": "production",
+              "purpose": "strapi"
+            },
+            "hostname_label": "network-cms",
+            "id": "ocid1.instance.oc1.eu-frankfurt-1.antheljtywkmveqcbua6sh5mawjtauifnnsb5c42cjhonbod4dlox7y3g7qq",
+            "image": "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaaltfitzfkiurvghfhzsqlei7mcnrphedsre3qunnoeusstcv2vm4q",
+            "instance_configuration_id": null,
+            "instance_options": [
+              {
+                "are_legacy_imds_endpoints_disabled": false
+              }
+            ],
+            "ipxe_script": null,
+            "is_cross_numa_node": false,
+            "is_pv_encryption_in_transit_enabled": null,
+            "launch_mode": "PARAVIRTUALIZED",
+            "launch_options": [
+              {
+                "boot_volume_type": "PARAVIRTUALIZED",
+                "firmware": "UEFI_64",
+                "is_consistent_volume_naming_enabled": true,
+                "is_pv_encryption_in_transit_enabled": true,
+                "network_type": "PARAVIRTUALIZED",
+                "remote_data_volume_type": "PARAVIRTUALIZED"
+              }
+            ],
+            "metadata": {
+              "ssh_authorized_keys": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCh8qedVJA5jAE/xpCGmRUYhU7rnG7VXOXf7dl+BwaoQwTluxZL3ahSyGrC1Un4ihm+/l2udd02gpJU0tbup8sNxz+xjmAAawXnFICr1hM8iJYRAdAwq8WWnPJBZslIGk0bo3TYO2EsKFreEc63J1V4i0gDkz827qwCki8FVx9x6Ur8BveDd46Nw0LABBVjqcLsZwfgZUB80Q+txM0v5az4SoKSPUR8PclWio9l6gB3JkG+eDlhP1iYygNNmvOTMj0S+MF+LEhgHyUQtqkngVsW1GLFQlf9WQcDJWVPAjzOOBAPDMv3CMbMnjhIusEVxD4V2eHzWXO4oIlCKuuO0vaV ssh-key-2023-11-23"
+            },
+            "platform_config": [],
+            "preemptible_instance_config": [],
+            "preserve_boot_volume": null,
+            "private_ip": "10.0.0.89",
+            "public_ip": "89.168.126.193",
+            "region": "eu-frankfurt-1",
+            "shape": "VM.Standard.E2.1.Micro",
+            "shape_config": [
+              {
+                "baseline_ocpu_utilization": "",
+                "gpu_description": "",
+                "gpus": 0,
+                "local_disk_description": "",
+                "local_disks": 0,
+                "local_disks_total_size_in_gbs": 0,
+                "max_vnic_attachments": 1,
+                "memory_in_gbs": 1,
+                "networking_bandwidth_in_gbps": 0.47999998927116394,
+                "nvmes": 0,
+                "ocpus": 1,
+                "processor_description": "2.0 GHz AMD EPYC™ 7551 (Naples)",
+                "vcpus": 2
+              }
+            ],
+            "source_details": [
+              {
+                "boot_volume_size_in_gbs": "47",
+                "boot_volume_vpus_per_gb": "10",
+                "instance_source_image_filter_details": [],
+                "kms_key_id": "",
+                "source_id": "ocid1.image.oc1.eu-frankfurt-1.aaaaaaaaltfitzfkiurvghfhzsqlei7mcnrphedsre3qunnoeusstcv2vm4q",
+                "source_type": "image"
+              }
+            ],
+            "state": "RUNNING",
+            "subnet_id": "ocid1.subnet.oc1.eu-frankfurt-1.aaaaaaaamraivkdawacfycvjic57q2qspc7btt2aabfe7tlyq5qdgojlldta",
+            "system_tags": {
+              "orcl-cloud.free-tier-retained": "true"
+            },
+            "time_created": "2023-11-25 17:05:03.052 +0000 UTC",
+            "time_maintenance_reboot_due": "",
+            "timeouts": {
+              "create": null,
+              "delete": null,
+              "update": null
+            },
+            "update_operation_constraint": null
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNzAwMDAwMDAwMDAwLCJkZWxldGUiOjQ1MDAwMDAwMDAwMDAsInVwZGF0ZSI6MjcwMDAwMDAwMDAwMH19"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "version": 4,
+  "terraform_version": "1.2.6",
+  "serial": 14,
+  "lineage": "91dbabbc-2bb7-b7ce-57fd-54c3059f8744",
+  "outputs": {
+    "instance_ip": {
+      "value": "10.0.0.89",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "mode": "data",
+      "type": "cloudinit_config",
+      "name": "ubuntu_init",
+      "provider": "provider[\"registry.terraform.io/hashicorp/cloudinit\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "base64_encode": true,
+            "boundary": "MIMEBOUNDARY",
+            "gzip": true,
+            "id": "1326779412",
+            "part": [
+              {
+                "content": "#!/bin/bash\n\napt-get update\napt-get -y upgrade\napt-get -y install nginx\n\nsystemctl enable nginx\nsystemctl start nginx\n\nhostname=$(hostname)\n\ncat \u003c\u003cEOF \u003e /var/www/html/index.nginx-debian.html \n\u003c!DOCTYPE html\u003e\n\u003chtml\u003e\n\u003chead\u003e\n\u003ctitle\u003eWelcome to nginx!\u003c/title\u003e\n\u003cstyle\u003e\n    body {\n        width: 35em;\n        margin: 0 auto;\n        font-family: Tahoma, Verdana, Arial, sans-serif;\n    }\n\u003c/style\u003e\n\u003c/head\u003e\n\u003cbody\u003e\n\u003ch1\u003eWelcome to nginx!\u003c/h1\u003e\n\u003cp\u003eIf you see this page, the nginx web server is successfully installed and\nworking. Further configuration is required.\u003c/p\u003e\n\n\u003cp\u003eFor online documentation and support please refer to\n\u003ca href=\"http://nginx.org/\"\u003enginx.org\u003c/a\u003e.\u003cbr/\u003e\nCommercial support is available at\n\u003ca href=\"http://nginx.com/\"\u003enginx.com\u003c/a\u003e.\u003c/p\u003e\n\n\u003cp\u003e\u003cem\u003eThank you for using nginx.\u003c/em\u003e\u003c/p\u003e\n\u003cp\u003e\u003cem\u003eHello from: $hostname\u003c/em\u003e\u003c/p\u003e\n\u003c/body\u003e\n\u003c/html\u003e\nEOF\n\n# Disable firewall \n/usr/sbin/netfilter-persistent stop\n/usr/sbin/netfilter-persistent flush\n\nsystemctl stop netfilter-persistent.service\nsystemctl disable netfilter-persistent.service",
+                "content_type": "text/x-shellscript",
+                "filename": null,
+                "merge_type": null
+              }
+            ],
+            "rendered": "H4sIAAAAAAAA/4RUTY/kRAy9l9T/wTO7B5AmqR0hhNSbibTM9Ig9DINQs2iPTspJrK2P4HKmu4X47yj9tQ0s0Jeqev1sP9l+uU9RKWqx3o20hDB55RFFbeAtubfQpCk6lN3d9dP7p9X3z7/8+PDu54/XZn4VH0gyp7iE2/LNwixMUVySFuacWzDmjqRYxTY5jv0SvmtYLwj74kpbtdsiD+R9boVHXZgnDvSPOq+ubMPRNpgHY3DUoieFaXSodH4WO5jGXtD9BeKYFb2H2HPcGpN3WSm06oEiNp6O+Gc4K4qe2EPKGjHQ3euvTtevjWlRoapWz49Qg31BsZvNxg4avOXoaFvugwtHDWMsZxxMdfXwfL/++NMK5ndtqtNB6GpTKaun+lfybQoEmg71ryp7+MNUWXfzCQDQJLeD3/fX+bdhp8MSvvmWwtszGFB6jkt4Azhp+ox3KWrRYWC/W8IahxTwBj6QOIx4A++E0d9AxpiLTMLdIfAPU9lj/coeBc8iZvm3XxI93NamGuv3HezSBJkIdOAMI/Z0Azocew4baiCTvJAAZ8hT21LO3eT9eWjkAKMzmySfOPYlPE6iAwm0KXbcT4LKKc7BQr9NLOTKyo61mYs/JoEUPUcCl9opUNQDG6ODPI1jEoXRE2YCoY4ENJkKYRDq7q4H1XFp7V5nmaS31/X5Xlmsy6oRW5v7FAJJy+jPKTkDviD7/W6h/kvKNoVzyjaFQ8qT9IpCvR4wftq3r0sCU+bYH7pWVpZCveceqT+Q9wk6SWEJr09besGyx1nZw8qtnh+NeQUPnPcSOxbazP4wdspi8+yySNqxV5JinG2YZ8NC1jT+H6fz0+zPSzOlEb5ELefBc0sXXHdU9F/0v39wimJh/gwAAP//lRRNN88EAAA="
+          },
+          "sensitive_attributes": []
+        }
+      ]
+    }
+  ]
+}
